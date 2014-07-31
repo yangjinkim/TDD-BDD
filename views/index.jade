@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(name="sendmail", action="/mail", method="POST")
+    label sender
+    br
+    input(type="email", name="sender")
+    br
+    label receiver
+    br
+    input(type="email", name="receiver")
+    br
+    label title
+    br
+    input(type="text", name="title")
+    br
+    label body 
+    br
+    textarea(name="body")
+    br  
+    button(type="submit") send email
+
+
+
