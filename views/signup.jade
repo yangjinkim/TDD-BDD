@@ -1,3 +1,27 @@
 extends layout
 block content
-  h1 Hi 18
+  form(method="post" action="/signup")
+    h2 Welcome, You have to signup to use our service
+    br
+    div 
+      label ID :
+      input(type="text" name="userId")
+    div
+      label Password :
+      input(type="password" name="userPassword")
+    div
+      label Email :
+      input(type="email" name="userEmail")
+    div
+      label Name :
+      input(type="text" name="userName")
+    div
+      label Age :
+      input(type="text" name="userAge")
+    div
+      button(type="submit") Signup
+
+
+
+
+    

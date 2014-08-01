@@ -12,6 +12,14 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    env: {
+      dev: {
+        NODE_ENV: 'development'
+      },
+      test: {
+        NODE_ENV: 'test'
+      }
+    },
     develop: {
       server: {
         file: 'bin/www'
@@ -112,8 +120,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-env');
 
   // register tasks
-  grunt.registerTask('run', ['develop', 'watch']);
-  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('run', ['env:dev', 'develop', 'watch']);
+  grunt.registerTask('test', ['env:dev', 'mochaTest']);
 };

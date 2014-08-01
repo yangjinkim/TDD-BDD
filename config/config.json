@@ -1,0 +1,13 @@
+{
+  "development" : {
+    "database" : "mongodb://aDevId:aDevPw@localhost/dev"
+  },
+
+  "production" : {
+    "database" : "mongodb://aProdId:aProdPw@localhost/prod"
+  },
+
+  "test" : {
+    "database" : "mongodb://aTestId:aTestPw@localhost/test"
+  }
+}

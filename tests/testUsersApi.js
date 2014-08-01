@@ -1,5 +1,5 @@
 
-var should = require('should'),
+var should = require('chai').should(),
     request = require('supertest'),
     request = request('http://localhost:3000');
 

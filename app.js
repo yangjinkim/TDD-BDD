@@ -1,3 +1,17 @@
+
+// nconf
+var nconf = require('nconf');
+nconf.argv().env().file({file : './config/config.json'});
+
+var env = nconf.get(process.env.NODE_ENV);
+console.log(env);
+
+// mongoose config
+var mongoose = require('mongoose');
+mongoose.connect(env.database);
+require('./models/user');
+
+// express config
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
