@@ -1,25 +1,100 @@
 extends layout
 block content
-  form(method="post" action="/signup")
-    h2 Welcome, You have to signup to use our service
-    br
-    div 
-      label ID :
-      input(type="text" name="userId")
-    div
-      label Password :
-      input(type="password" name="userPassword")
-    div
-      label Email :
-      input(type="email" name="userEmail")
-    div
-      label Name :
-      input(type="text" name="userName")
-    div
-      label Age :
-      input(type="text" name="userAge")
-    div
-      button(type="submit") Signup
+  div(class="jumbotron")
+   div(class="container")
+     h1 Welcome, Agile!
+     p This is signup page
+  form(id="signupForm" role="form", method="post", action="/signup",
+       data-bv-message="This value is not valid",
+       data-bv-feedbackicons-valid="glyphicon glyphicon-ok",
+       data-bv-feedbackicons-invalid="glyphicon glyphicon-remove",
+       data-bv-feedbackicons-validating="glyphicon glyphicon-refresh")
+    fieldset
+      div(class="form-group")
+        label(for="userId" class="control-label") ID :
+        input(type="text",
+              id="userId",
+              name="userId",
+              class="form-control",
+              required,
+              data-bv-stringlength="true",
+              data-bv-stringlength-min="5",
+              data-bv-stringlength-max="15",
+              data-bv-stringlength-message="The user ID must be more than 6 and less than 30 characters long"
+              
+              data-bv-different="true"
+              data-bv-different-field="userPassword",
+              data-bv-different-message="The username and password cannot be the same as each other")
+      div(class="form-group")
+        label(for="userPassword" class="control-label") Password :
+        input(type="password",
+              id="userPassword",
+              name="userPassword",
+              class="form-control",
+              required,
+              data-bv-stringlength="true",
+              data-bv-stringlength-min="5",
+              data-bv-stringlength-max="15",
+              data-bv-stringlength-message="The password must be more than or equal to 5 and less than or equal to 15 characters long"
+              data-bv-different="true"
+              data-bv-different-field="userId",
+              data-bv-different-message="The username and password cannot be the same as each other"
+              data-bv-identical="true"
+              data-bv-identical-field="retypePassword"
+              data-bv-identical-message="The password and its confirm are not the same"
+              )
+      div(class="form-group")
+        label(for="retypePassword" class="control-label") Retype your password :
+        input(type="password",
+              id="retypePassword",
+              name="retypePassword",
+              class="form-control",
+              required,
+              data-bv-stringlength="true",
+              data-bv-stringlength-min="5",
+              data-bv-stringlength-max="15",
+              data-bv-stringlength-message="The password must be more than or equal to 5 and less than or equal to 15 characters long",
+              data-bv-different="true"
+              data-bv-different-field="userId",
+              data-bv-different-message="The username and password cannot be the same as each other"
+              data-bv-identical="true"
+              data-bv-identical-field="userPassword"
+              data-bv-identical-message="The password and its confirm are not the same"
+              )
+      div(class="form-group")
+        label(for="userEmail" class="control-label") Email :
+        input(type="email",
+              id="userEmail",
+              name="userEmail",
+              class="form-control",
+              required
+              data-bv-emailaddress="true",
+              data-bv-emailaddress-message="The input is not a valid email address"
+              data-bv-stringlength="true",
+              data-bv-stringlength-max="100",
+              data-bv-stringlength-message="The email should be less than 100 or equal characters long")
+      div(class="form-group")
+        label(for="userName" class="control-label") Name :
+        input(type="text" name="userName" class="form-control" required
+              data-bv-stringlength="true",
+              data-bv-stringlength-min="5",
+              data-bv-stringlength-max="30",
+              data-bv-stringlength-message="The username must be more than or equal to 5 and less than or equal to 30 characters long")
+      div(class="form-group")
+        label(for="userAge" class="control-label") Age :
+        input(type="number",
+              id="userAge",
+              name="userAge",
+              class="form-control",
+              required,
+              min="1"
+              data-bv-greaterthan-inclusive="true"
+              data-bv-greaterthan-message="The input must be greater than or equal to 1"
+              max="150"
+              data-bv-lessthan-inclusive="false"
+              data-bv-lessthan-message="The input must be less than 150")
+      div(class="form-group")
+        button(type="submit" class="signup-button btn btn-info") Signup
 
 
 

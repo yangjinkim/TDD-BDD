@@ -12,7 +12,7 @@ router.post('/', function(req, res) {
   req.checkBody('userId', 'Invalid User ID').notEmpty().isAlphanumeric().len(5, 15);
   req.checkBody('userPassword', 'Invalid Password').notEmpty().len(5, 15);
   req.checkBody('userEmail', 'Invalid Email').isEmail().len(5, 100);
-  req.checkBody('userName', 'Invalid UserName').notEmpty().isAlpha();
+  req.checkBody('userName', 'Invalid UserName').notEmpty().isAlpha().len(5, 30);
   req.checkBody('userAge', 'Invalid Age').notEmpty().isInt();
 
   var errors = req.validationErrors();
@@ -21,19 +21,27 @@ router.post('/', function(req, res) {
     res.send(400);
   } else {
 
-    var obj = new UserModel({
-      id : req.body.userId, 
-      password : req.body.userPassword,
-      email : req.body.userEmail,
-      name  : req.body.userName,
-      age : req.body.userAge
-    });
-
-    obj.save(function(err){
-      if(err) {
-        res.send(500);
+    UserModel.find({id: req.body.userId}, function(err, result) {
+      // user already exists
+      if (result.length >= 1) {
+	res.send(409, "You are already registered to Agile service");
       } else {
-        res.send(201);
+
+	var obj = new UserModel({
+	  id : req.body.userId, 
+	  password : req.body.userPassword,
+	  email : req.body.userEmail,
+	  name  : req.body.userName,
+	  age : req.body.userAge
+	});
+
+	obj.save(function(err){
+	  if(err) {
+            res.send(500);
+	  } else {
+            res.send(201);
+	  }
+	});
       }
     });
   }

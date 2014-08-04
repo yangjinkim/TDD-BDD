@@ -232,6 +232,47 @@ describe('POST /signup validation', function() {
   });
 });
 
+describe('POST /signup failed', function() {
+  var userModel = mongoose.model('user');
+
+  beforeEach(function(done) {
+    userModel.remove({}, function(err){
+      should.not.exist(err);
+
+      // add dummy user
+      var sampleUser = new userModel({
+        id: "yangjin",
+        password: "2232323",
+        email: "yangjinkim@gmail.com",
+        name: "dfdfdfdfdf",
+        age: "25"
+      });
+
+      sampleUser.save(function(err) {
+	should.not.exist(err);
+	done();
+      });
+    });  
+  });
+
+  it('should return 409 conflict HTTP code when user already exists',
+     function(done) {
+       request.post('/signup')
+	 .expect(409)
+	 .send({
+           userId: "yangjin", 
+           userPassword: "481AmFMA",
+           userEmail: "yj@gmail.com",
+           userName: "gimYangJin",
+           userAge: "25"
+	 })
+	 .end(function(err, res){
+           should.not.exist(err);
+           done();
+	 });
+     });
+});
+
 
 describe('POST /signup success', function () {
 
@@ -263,6 +304,6 @@ describe('POST /signup success', function () {
         });
 
         done();
-    });
+      });
   });
 });

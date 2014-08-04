@@ -1,1 +1,7 @@
 node_modules/
+public/components
+
+public/css/style.css
+public/css/style.min.css
+
+.tern-port
