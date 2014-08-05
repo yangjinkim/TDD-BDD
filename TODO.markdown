@@ -1,9 +1,29 @@
 ## Impl TODO
 
-Front -> Name : Number
+
+1. Login // HTTP stateless REQ -> RES  REQ
+
+// Login -> Validation Empty, 5, 15 -> DB. 
+
+Cookie / Session
+Clcient / Server
+
+Test fail -> Trying to open unclosed connection
+
+mocha Before Flow
+
+TDD
+
+/ -> login // angular two way binding
+if already login -> / loggedin
+
+login.js // not logged in
+home.js // for logged in
+
+// login test
+supertest -> signup
 
 angular 2-way binding
-1. Login
 
 /setting -> login
 

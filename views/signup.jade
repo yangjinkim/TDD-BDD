@@ -5,7 +5,7 @@ block content
      h1 Welcome, Agile!
      if error
        div(class="alert alert-danger" role="alert")= message
-     else
+     else if success
        div(class="alert alert-success" role="alert")= message
   form(id="signupForm" role="form", method="post", action="/signup",
        data-bv-message="This value is not valid",
@@ -27,7 +27,7 @@ block content
               
               data-bv-different="true"
               data-bv-different-field="userPassword",
-              data-bv-different-message="The username and password cannot be the same as each other")
+              data-bv-different-message="The user ID and password cannot be the same as each other")
       div(class="form-group")
         label(for="userPassword" class="control-label") Password :
         input(type="password",
@@ -41,7 +41,7 @@ block content
               data-bv-stringlength-message="The password must be more than or equal to 5 and less than or equal to 15 characters long"
               data-bv-different="true"
               data-bv-different-field="userId",
-              data-bv-different-message="The username and password cannot be the same as each other"
+              data-bv-different-message="The user ID and password cannot be the same as each other"
               data-bv-identical="true"
               data-bv-identical-field="retypePassword"
               data-bv-identical-message="The password and its confirm are not the same"
@@ -82,7 +82,9 @@ block content
               data-bv-stringlength="true",
               data-bv-stringlength-min="5",
               data-bv-stringlength-max="30",
-              data-bv-stringlength-message="The username must be more than or equal to 5 and less than or equal to 30 characters long")
+              data-bv-stringlength-message="The user name must be more than or equal to 5 and less than or equal to 30 characters long",
+              pattern="^[a-zA-z]+$",
+              data-bv-regexp-message="The user name can consist of alphabetical characters only")
       div(class="form-group")
         label(for="userAge" class="control-label") Age :
         input(type="number",

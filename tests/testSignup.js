@@ -10,9 +10,10 @@ nconf.env().argv().file({file: './config/config.json'});
 require('../models/user');
 
 var env = nconf.get(process.env.NODE_ENV);
-console.log(env);
-mongoose.connect(env.database);
 
+mongoose.connect(env.database, function(err) {
+  should.not.exist(err);
+});
 
 describe('GET /signup', function() {
   it('should render signup page', function (done) {
@@ -301,9 +302,10 @@ describe('POST /signup success', function () {
         userModel.find({id: 'yanjin'}, function (err, docs) {
           should.not.exist(err);
           (docs.length).should.be.equal(1);
+	  mongoose.connection.close();
+          done();
         });
 
-        done();
       });
   });
 });
