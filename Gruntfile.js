@@ -124,5 +124,6 @@ module.exports = function (grunt) {
 
   // register tasks
   grunt.registerTask('run', ['env:dev', 'develop', 'watch']);
+  grunt.registerTask('build', ['less', 'cssmin']);
   grunt.registerTask('test', ['env:dev', 'mochaTest']);
 };

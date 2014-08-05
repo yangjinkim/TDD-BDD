@@ -1,8 +1,12 @@
 ## Impl TODO
 
+Front -> Name : Number
+
+angular 2-way binding
+1. Login
+
 /setting -> login
 
-1. Error Message // Created Message
 2. Login Page, Login Test
 3. Setting // Angular
 
@@ -12,6 +16,5 @@
 
 ## 1. Signup
 
-angular 2-way binding
 underscore
 

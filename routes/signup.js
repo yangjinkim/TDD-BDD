@@ -4,7 +4,7 @@ var express = require('express'),
     UserModel = mongoose.model('user');
 
 router.get('/', function (req, res) {
-  res.render('signup', {title: 'signup page'});
+  res.render('signup', {message: 'signup page'});
 });
 
 router.post('/', function(req, res) {
@@ -18,13 +18,19 @@ router.post('/', function(req, res) {
   var errors = req.validationErrors();
 
   if (errors) {
-    res.send(400);
-  } else {
+    res.render('signup', {
+      message: 'Check your information again before sending',
+      error: true
+    });
+   } else {
 
     UserModel.find({id: req.body.userId}, function(err, result) {
       // user already exists
       if (result.length >= 1) {
-	res.send(409, "You are already registered to Agile service");
+	res.render('signup', {
+	  message: 'You are already registered to Agile service',
+	  error: true
+	});
       } else {
 
 	var obj = new UserModel({
@@ -37,9 +43,14 @@ router.post('/', function(req, res) {
 
 	obj.save(function(err){
 	  if(err) {
-            res.send(500);
+	    res.render('signup', {
+	      message: 'something went wrong when it is saved',
+	      error: true
+	    });
 	  } else {
-            res.send(201);
+	    res.render('signup' ,{
+	      message: 'saved successfully'
+	    });
 	  }
 	});
       }
