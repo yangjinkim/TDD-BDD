@@ -6,4 +6,9 @@ router.get('/', function(req, res) {
   res.render('login');
 });
 
+router.post('/', function(req, res) {
+  res.status(200);
+  res.render('login');
+});
+
 module.exports = router;

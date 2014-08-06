@@ -11,10 +11,6 @@ require('../models/user');
 
 var env = nconf.get(process.env.NODE_ENV);
 
-mongoose.connect(env.database, function(err) {
-  should.not.exist(err);
-});
-
 describe('GET /signup', function() {
   it('should render signup page', function (done) {
     request.get('/signup').
@@ -236,6 +232,20 @@ describe('POST /signup validation', function() {
 describe('POST /signup failed', function() {
   var userModel = mongoose.model('user');
 
+  before(function(done) {
+    mongoose.connect(env.database, function(err) {
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  after(function(done) {
+    mongoose.disconnect(function(err) {
+      should.not.exist(err);
+      done();
+    });
+  });
+
   beforeEach(function(done) {
     userModel.remove({}, function(err){
       should.not.exist(err);
@@ -278,6 +288,20 @@ describe('POST /signup failed', function() {
 describe('POST /signup success', function () {
 
   var userModel = mongoose.model('user');
+
+  before(function(done) {
+    mongoose.connect(env.database, function(err) {
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  after(function(done) {
+    mongoose.disconnect(function(err) {
+      should.not.exist(err);
+      done();
+    });
+  });
 
   beforeEach(function(done) {
     userModel.remove({}, function(err){

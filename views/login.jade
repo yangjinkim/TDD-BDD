@@ -3,6 +3,7 @@ block content
   div(class="jumbotron")
     div(class="container")
       h2 Welcome to Agile service
+      
   form(id="loginForm" role="form")
     fieldset
       div(class="form-group")
@@ -10,13 +11,15 @@ block content
         input(type="text",
               id="userId",
               class="form-control"
-              required)
+              required,
+              ng-model="userId")
       div(class="form-group")
         label(for="userPassword" class="control-label") Password :
         input(type="password",
               id="userPassword",
               name="userPassword",
               class="form-control",
-              required)
+              required,
+              ng-model="userPassword")
       div(class="form-group")
-        button(class="btn btn-info") signin
+        button(class="btn btn-info" ng-click="clickFunction()") signin
